@@ -1,0 +1,45 @@
+query ListPublicBlogPosts @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public as it only retrieves public blog posts.") {
+  blogPosts(where: {isPublic: {eq: true}}) {
+    id
+    title
+    content
+    createdAt
+    updatedAt
+    author {
+      displayName
+    }
+    tags
+  }
+}
+
+query MyBlogPosts @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users as it only retrieves their own blog posts.") {
+  blogPosts(where: {authorId: {eq_expr: "auth.uid"}}) {
+    id
+    title
+    isPublic
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateComment($blogPostId: UUID!, $content: String!) @auth(level: USER) {
+  comment_insert(data: {
+    blogPostId: $blogPostId,
+    content: $content,
+    authorId_expr: "auth.uid",
+    createdAt_expr: "request.time"
+  }) {
+    id
+  }
+}
+
+mutation AddTagToBlogPost($blogPostId: UUID!, $tagName: String!) @auth(level: USER) {
+  blogPost_update(
+    key: {id: $blogPostId},
+    data: {
+      tags_update: {add: [$tagName]}
+    }
+  ) {
+    id
+  }
+}

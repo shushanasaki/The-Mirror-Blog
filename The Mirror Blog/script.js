@@ -11,14 +11,13 @@ import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/
 
 /* === FIREBASE SETUP === */
 const firebaseConfig = {
-apiKey: "AIzaSyDM-jfigZF6W3n-igzKPWxwZq2JEcaIQL4",
-authDomain: "the-mirror-blog.firebaseapp.com",
-databaseURL: "https://the-mirror-blog-default-rtdb.firebaseio.com",
-projectId: "the-mirror-blog",
-storageBucket: "the-mirror-blog.firebasestorage.app",
-messagingSenderId: "876746537077",
-appId: "1:876746537077:web:125ffe67b7a761d7be603c",
-measurementId: "G-6PB4583T6T"
+  apiKey: "AIzaSyBMQ7hPGYxZQoZV4-U52nlfd9vamxbXRgk",
+  authDomain: "themirrorblog-f58b0.firebaseapp.com",
+  projectId: "themirrorblog-f58b0",
+  storageBucket: "themirrorblog-f58b0.firebasestorage.app",
+  messagingSenderId: "859971398783",
+  appId: "1:859971398783:web:478f900ec46f7ffb20e34a",
+  measurementId: "G-HP1LYCCLQB"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -164,6 +163,7 @@ function authSignOut() {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
+        
     });
 }
 

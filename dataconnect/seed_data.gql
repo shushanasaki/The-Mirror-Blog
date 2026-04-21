@@ -1,0 +1,66 @@
+mutation CreateDemoData @transaction @auth(level: USER, insecureReason: "This operation is for seeding data and can be run by any authenticated user.") {
+  user_insertMany(data: [
+    {
+      id: "b455c1e2-b3a6-4f81-8b01-9f93c5c9a1b1",
+      displayName: "Demo User 1",
+      email: "demo1@example.com",
+      createdAt: "2023-01-01T10:00:00Z"
+    },
+    {
+      id: "c789d2f3-e4b5-4a76-9c12-3d45e6f7a8b9",
+      displayName: "Demo User 2",
+      email: "demo2@example.com",
+      createdAt: "2023-01-02T11:00:00Z"
+    }
+  ])
+  blogPost_insertMany(data: [
+    {
+      id: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      title: "My First Blog Post",
+      content: "This is the content of my first amazing blog post. Hope you enjoy it!",
+      createdAt: "2023-01-01T12:00:00Z",
+      updatedAt: "2023-01-01T12:00:00Z",
+      isPublic: true,
+      authorId: "b455c1e2-b3a6-4f81-8b01-9f93c5c9a1b1",
+      tags: ["tech", "beginner"]
+    },
+    {
+      id: "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+      title: "Another Exciting Entry",
+      content: "Here's another post filled with interesting thoughts and ideas.",
+      createdAt: "2023-01-03T09:30:00Z",
+      updatedAt: "2023-01-03T09:30:00Z",
+      isPublic: true,
+      authorId: "c789d2f3-e4b5-4a76-9c12-3d45e6f7a8b9",
+      tags: ["thoughts", "advanced"]
+    }
+  ])
+  comment_insertMany(data: [
+    {
+      id: "1a2b3c4d-5e6f-789a-bcde-f01234567890",
+      content: "Great post!",
+      createdAt: "2023-01-01T13:00:00Z",
+      authorId: "c789d2f3-e4b5-4a76-9c12-3d45e6f7a8b9",
+      blogPostId: "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+    },
+    {
+      id: "fedcba98-7654-3210-fedc-ba9876543210",
+      content: "Very insightful, thanks for sharing!",
+      createdAt: "2023-01-03T10:00:00Z",
+      authorId: "b455c1e2-b3a6-4f81-8b01-9f93c5c9a1b1",
+      blogPostId: "f9e8d7c6-b5a4-3210-fedc-ba9876543210"
+    }
+  ])
+  favorite_insertMany(data: [
+    {
+      userId: "b455c1e2-b3a6-4f81-8b01-9f93c5c9a1b1",
+      blogPostId: "f9e8d7c6-b5a4-3210-fedc-ba9876543210",
+      createdAt: "2023-01-03T10:30:00Z"
+    },
+    {
+      userId: "c789d2f3-e4b5-4a76-9c12-3d45e6f7a8b9",
+      blogPostId: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      createdAt: "2023-01-01T13:15:00Z"
+    }
+  ])
+}

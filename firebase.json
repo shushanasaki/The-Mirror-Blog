@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "C:\\Users\\shush\\Visual Studio Code\\The-Mirror-Blog\\public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
